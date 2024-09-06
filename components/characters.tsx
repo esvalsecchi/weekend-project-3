@@ -38,39 +38,55 @@ export function Characters() {
       description: "A powerful mage with a deep connection to the natural world.",
       personality: "Mystical, Compassionate, Mischievous",
     },
-  ])
-  const [showDialog, setShowDialog] = useState(false)
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
+  ]);
+  const [showDialog, setShowDialog] = useState(false);
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
 
   // Use useChat hook
-  const { messages, append, isLoading } = useChat();
+  const { messages, append, isLoading, setMessages } = useChat();
 
   const handleAddCharacter = () => {
-    setSelectedCharacter(null)
-    setShowDialog(true)
-  }
-  const handleEditCharacter = (character: Character) => {
-    setSelectedCharacter(character)
-    setShowDialog(true)
-  }
-  const handleDeleteCharacter = (id: number) => {
-    setCharacters(characters.filter((char) => char.id !== id))
-  }
-  const handleSaveCharacter = (character: Character) => {
-    if (selectedCharacter) {
-      setCharacters(characters.map((char) => (char.id === character.id ? character : char)))
-    } else {
-      setCharacters([...characters, { ...character, id: characters.length + 1 }])
-    }
-    setShowDialog(false)
+    setSelectedCharacter(null);
+    setShowDialog(true);
   }
 
-  const handleGenerateStory = async () => {
-    const response = await append({
-      role: "user",
-      content: `Generate a story with these characters: ${JSON.stringify(characters)}`
-    });
-    // The response will contain only the generated story
+  const handleEditCharacter = (character: Character) => {
+    setSelectedCharacter(character);
+    setShowDialog(true);
+  }
+
+  const handleDeleteCharacter = (id: number) => {
+    setCharacters(characters.filter((char) => char.id !== id));
+  }
+
+  const handleSaveCharacter = (character: Character) => {
+    if (selectedCharacter) {
+      setCharacters(characters.map((char) => (char.id === character.id ? character : char)));
+    } else {
+      setCharacters([...characters, { ...character, id: characters.length + 1 }]);
+    }
+    setShowDialog(false);
+  }
+
+  const handleGenerateStory = () => {
+    // Limpiar mensajes anteriores antes de generar una nueva historia
+    setMessages([]);
+
+    // Llamada a append para generar la historia con personajes actualizados
+    append({ role: "user", content: JSON.stringify({ characters }) });
+  }
+
+  const filterMessageContent = (content: string) => {
+    try {
+      const parsedContent = JSON.parse(content);
+      if (parsedContent.characters) {
+        // Elimina la parte que no deseas mostrar
+        return "";
+      }
+      return content; // Si no es el JSON con personajes, muestra el contenido
+    } catch (error) {
+      return content; // Si no es un JSON válido, muestra el contenido original
+    }
   };
 
   return (
@@ -163,16 +179,12 @@ export function Characters() {
         {messages.length > 0 && (
           <div className="mt-4">
             <h2 className="text-xl font-bold mb-4">Generated Story</h2>
-            <div className="prose">
-              {messages[messages.length - 1].role === "assistant" && (
-                <p>{messages[messages.length - 1].content}</p>
-              )}
-            </div>
+            <div className="prose">{messages.map((message, index) => (
+              <p key={index}>{filterMessageContent(message.content)}</p>
+            ))}</div>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
-
-// Icons components remain the same.
