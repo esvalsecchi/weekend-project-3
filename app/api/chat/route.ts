@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     const prompt = `Create a short story featuring the following characters:\n${characterDescriptions}\n\nThe story should be captivating, imaginative, and thought-provoking, exploring themes that suit these characters. Make sure to incorporate their unique traits and personalities into the narrative.`;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "mistral-7b-v0.1.Q6_K.gguf",
       stream: true,
       messages: [
         {

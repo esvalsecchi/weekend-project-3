@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Story Telling AI
 
-## Getting Started
+![Story Telling AI Interface](path/to/your/image.png)
 
-First, run the development server:
+## Project Description
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Story Telling AI is a weekend project designed to consolidate knowledge in AI-assisted storytelling. This web application allows users to manage characters and generate stories using AI models.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Character Management: Users can add, edit, and delete characters with names, descriptions, and personalities.
+- Story Generation: AI-powered story creation using user-defined characters.
+- Character Role Summary: After story generation, a summary of each character's role is provided.
+- Model Experimentation: Test different AI models for story generation and compare outputs.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technical Details
 
-## Learn More
+- Built with NextJS, React, Vercel and TailwindCSS
+- Uses various AI models for story generation
+- Experiments with different context window sizes and model sizes
 
-To learn more about Next.js, take a look at the following resources:
+## Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1. Add characters using the "Add Character" button
+2. Edit or delete existing characters as needed
+3. Click "Generate Story" to create a story using the defined characters
+4. Review the generated story and character role summaries
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Goals
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Implement a functional character management system
+- Experiment with different AI models for story generation
+- Evaluate model performance in terms of character "memory" and context utilization
+- Compare outputs across various model sizes and context window sizes
+
+## Contributing
+
+This project is part of a learning exercise. Contributions from team members are welcome. Please coordinate with your group members for any changes or additions.
+
+## Results
+![alt text](image.png)
