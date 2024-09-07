@@ -1,6 +1,5 @@
 # Story Telling AI
 
-![Story Telling AI Interface](path/to/your/image.png)
 
 ## Project Description
 
